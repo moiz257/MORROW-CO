@@ -1,0 +1,454 @@
+@import "tailwindcss";
+
+:root {
+    --paper: #f6f1e9;
+    --paper-deep: #eee5d8;
+    --ink: #27231f;
+    --muted: #7c746b;
+    --line: #ded3c5;
+    --burgundy: #7c332f;
+    --burgundy-dark: #5d2624;
+    --gold: #b18a52;
+    --sage: #aeb7a4;
+    --white: #fffdf9;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        background: var(--paper);
+    }
+
+    body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Outfit", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    ::selection {
+        background: var(--burgundy);
+        color: var(--white);
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    :where(a, button, input, textarea, select):focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 4px;
+    }
+}
+
+@layer components {
+    .font-display {
+        font-family: Georgia, "Times New Roman", serif;
+        letter-spacing: -0.045em;
+    }
+
+    .brand-mark {
+        position: relative;
+        display: inline-flex;
+        align-items: baseline;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.07em;
+        line-height: 0.9;
+        transition: color 300ms ease;
+    }
+
+    .brand-mark:hover {
+        color: var(--burgundy);
+    }
+
+    .brand-accent {
+        color: var(--burgundy);
+    }
+
+    .brand-tagline {
+        position: absolute;
+        top: calc(100% + 0.35rem);
+        left: 0.15rem;
+        color: var(--muted);
+        font-family: "Outfit", ui-sans-serif, sans-serif;
+        font-size: 0.48rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .brand-badge {
+        background: var(--gold);
+        color: var(--ink);
+        font-family: "Outfit", ui-sans-serif, sans-serif;
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .nav-link {
+        position: relative;
+        color: var(--muted);
+        transition: color 250ms ease;
+    }
+
+    .nav-link::after {
+        position: absolute;
+        right: 0;
+        bottom: -0.45rem;
+        left: 0;
+        height: 1px;
+        background: var(--burgundy);
+        content: "";
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 250ms ease;
+    }
+
+    .nav-link:hover {
+        color: var(--burgundy);
+    }
+
+    .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    .button-primary {
+        background: var(--burgundy);
+        color: var(--white);
+        transition: transform 250ms ease, background 250ms ease, box-shadow 250ms ease;
+    }
+
+    .button-primary:hover {
+        background: var(--burgundy-dark);
+        box-shadow: 0 10px 24px rgba(124, 51, 47, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .button-primary:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    .search-field {
+        background: rgba(255, 253, 249, 0.7);
+        border: 1px solid var(--line);
+        color: var(--ink);
+    }
+
+    .search-field:focus-within {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(177, 138, 82, 0.12);
+    }
+
+    .hero-panel {
+        overflow: hidden;
+        background: var(--paper-deep);
+        border: 1px solid rgba(124, 51, 47, 0.14);
+        border-radius: 1.5rem;
+        box-shadow: 0 24px 60px rgba(81, 61, 40, 0.08);
+    }
+
+    .hero-panel::before {
+        position: absolute;
+        top: -20%;
+        right: -8%;
+        width: 26rem;
+        height: 26rem;
+        border: 1px solid rgba(177, 138, 82, 0.25);
+        border-radius: 999px;
+        content: "";
+    }
+
+    .hero-panel::after {
+        position: absolute;
+        top: 13%;
+        right: 9%;
+        width: 14rem;
+        height: 14rem;
+        border: 1px solid rgba(177, 138, 82, 0.2);
+        border-radius: 999px;
+        content: "";
+    }
+
+    .hero-art {
+        z-index: 1;
+        filter: saturate(0.78) contrast(1.04);
+        transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease;
+    }
+
+    .hero-panel:hover .hero-art {
+        filter: saturate(0.95) contrast(1.05);
+        transform: translate3d(-0.5rem, -0.35rem, 0) scale(1.025);
+    }
+
+    .heritage-card {
+        border: 1px solid rgba(39, 35, 31, 0.1);
+        border-radius: 1.25rem;
+        box-shadow: 0 16px 35px rgba(81, 61, 40, 0.06);
+        transition: transform 350ms ease, box-shadow 350ms ease;
+    }
+
+    .heritage-card:hover {
+        box-shadow: 0 20px 45px rgba(81, 61, 40, 0.13);
+        transform: translateY(-5px);
+    }
+
+    .heritage-card--gold {
+        background: #e7d7bb;
+    }
+
+    .heritage-card--sage {
+        background: #d6ddd1;
+    }
+
+    .category-pill {
+        background: var(--white);
+        border: 1px solid var(--line);
+        color: var(--muted);
+        transition: color 250ms ease, background 250ms ease, transform 250ms ease;
+    }
+
+    .category-pill:hover {
+        background: var(--burgundy);
+        color: var(--white);
+        transform: translateY(-2px);
+    }
+
+    .section-kicker {
+        color: var(--burgundy);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    .text-ink {
+        color: var(--ink);
+    }
+
+    .text-muted {
+        color: var(--muted);
+    }
+
+    .text-burgundy {
+        color: var(--burgundy);
+    }
+
+    .bg-burgundy {
+        background: var(--burgundy);
+    }
+
+    .bg-paper {
+        background: var(--paper);
+    }
+
+    .bg-paper-deep {
+        background: var(--paper-deep);
+    }
+
+    .border-t-burgundy {
+        border-top-color: var(--burgundy);
+    }
+
+    .border-line {
+        border-color: var(--line);
+    }
+
+    .surface-card {
+        background: var(--white);
+        border: 1px solid var(--line);
+        box-shadow: 0 16px 34px rgba(81, 61, 40, 0.06);
+    }
+
+    .input-classic {
+        background: rgba(255, 253, 249, 0.82);
+        border: 1px solid var(--line);
+        color: var(--ink);
+    }
+
+    .input-classic:focus {
+        border-color: var(--gold);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(177, 138, 82, 0.12);
+    }
+
+    .section-title {
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.7rem;
+        letter-spacing: -0.04em;
+    }
+
+    .product-card-image {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 0.85rem;
+        transition: border-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+    }
+
+    .product-card:hover .product-card-image {
+        border-color: rgba(124, 51, 47, 0.35);
+        box-shadow: 0 15px 28px rgba(81, 61, 40, 0.11);
+        transform: translateY(-4px);
+    }
+
+    .dashboard-shell {
+        background: var(--paper);
+    }
+
+    .dashboard-topbar {
+        background: rgba(255, 253, 249, 0.9);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(12px);
+    }
+
+    .dashboard-sidebar {
+        background: var(--white);
+        border-right: 1px solid var(--line);
+    }
+
+    .dashboard-link {
+        color: var(--muted);
+        transition: background 250ms ease, color 250ms ease, padding 250ms ease;
+    }
+
+    .dashboard-link:hover,
+    .dashboard-link-active {
+        background: var(--paper);
+        color: var(--burgundy);
+    }
+
+    .dashboard-accent {
+        background: var(--burgundy);
+    }
+
+    .motion-rise {
+        animation: riseIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .motion-delay-1 {
+        animation-delay: 100ms;
+    }
+
+    .motion-delay-2 {
+        animation-delay: 200ms;
+    }
+
+    .motion-delay-3 {
+        animation-delay: 300ms;
+    }
+
+    .motion-float {
+        animation: floatIn 5s ease-in-out infinite;
+    }
+
+    @keyframes riseIn {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes floatIn {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-8px);
+        }
+    }
+
+    @keyframes marqueeScroll {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Keep older page-level utility classes inside the new Morrow palette. */
+.text-green-400,
+.text-green-500,
+.text-green-600,
+.text-green-700,
+.text-green-800,
+.text-indigo-500,
+.text-indigo-600 {
+    color: var(--burgundy) !important;
+}
+
+.bg-green-50,
+.bg-green-100,
+.bg-green-200,
+.bg-green-300,
+.bg-green-500,
+.bg-green-600,
+.bg-green-700,
+.bg-indigo-500,
+.bg-indigo-600 {
+    background-color: var(--burgundy) !important;
+}
+
+.bg-green-50,
+.bg-green-100 {
+    background-color: rgba(124, 51, 47, 0.1) !important;
+}
+
+.bg-slate-50 {
+    background-color: var(--paper) !important;
+}
+
+.bg-slate-100 {
+    background-color: var(--white) !important;
+}
+
+.bg-slate-200 {
+    background-color: var(--paper-deep) !important;
+}
+
+.text-slate-400,
+.text-slate-500,
+.text-slate-600 {
+    color: var(--muted) !important;
+}
+
+.text-slate-700,
+.text-slate-800,
+.text-slate-900 {
+    color: var(--ink) !important;
+}
+
+.border-slate-100,
+.border-slate-200,
+.border-slate-300,
+.border-gray-200,
+.border-gray-300 {
+    border-color: var(--line) !important;
+}
